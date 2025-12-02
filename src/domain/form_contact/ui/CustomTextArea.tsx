@@ -11,6 +11,7 @@ export default function CustomTextArea({ name, control, errors }: CustomTextArea
     <Controller
       name={name}
       control={control}
+      defaultValue=""
       render={({ field }) => (
         <div className="flex flex-col gap-2 w-full h-48">
           <label
@@ -28,12 +29,12 @@ export default function CustomTextArea({ name, control, errors }: CustomTextArea
             className={clsx(
               "font-nunito text-[0.875rem] text-kalita-bg-light-brown h-36 px-8 py-4 rounded-[0.25rem] border-[0.064rem] bg-kalita-bg-light outline-0 resize-none",
               {
-                "border-kalita-error": errors[name],
-                "border-kalita-bg-light-brown": !errors[name],
+                "border-kalita-error": errors?.[name],
+                "border-kalita-bg-light-brown": !errors?.[name],
               }
             )}
           />
-          <ErrorMessage message={errors?.[name]?.message} />
+          <ErrorMessage message={errors?.[name]?.message as string} />
         </div>
       )}
     />

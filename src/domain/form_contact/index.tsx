@@ -14,25 +14,17 @@ import {
 import { Modal } from "./ui/Modal";
 
 export default function FormsContact() {
-  
   const {
     handleSubmit,
     control,
-    reset, 
+    reset,
     formState: { errors },
   } = useForm<formContactType>({
-    defaultValues: {
-      full_name: "",
-      email: "",
-      phone: "",
-      photo_session_type: "",
-      message: "",
-    },
     resolver: zodResolver(formContactSchema),
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   useEffect(() => {
     if (isModalOpen) {
       const timer = setTimeout(() => {
@@ -44,9 +36,8 @@ export default function FormsContact() {
     }
   }, [isModalOpen, reset]);
 
-
   function handleSubmitFormContact(data: formContactType) {
-    /*Cenario de teste de envios de dados via API.*/ 
+    /*Cenario de teste de envios de dados via API.*/
     console.log("Dados enviados:", data);
     setIsModalOpen(true);
   }
@@ -63,7 +54,10 @@ export default function FormsContact() {
           </span>
         </div>
 
-        <form className="w-full" onSubmit={handleSubmit(handleSubmitFormContact)}>
+        <form
+          className="w-full"
+          onSubmit={handleSubmit(handleSubmitFormContact)}
+        >
           <section className="flex flex-col gap-8">
             <Input
               name="full_name"
@@ -97,13 +91,10 @@ export default function FormsContact() {
               name="photo_session_type"
               control={control}
               errors={errors}
+              
             />
 
-            <CustomTextArea
-              name="message"
-              control={control}
-              errors={errors}
-            />
+            <CustomTextArea name="message" control={control} errors={errors} />
 
             <button
               className="bg-kalita-brown-medium w-full h-16 px-8 py-4 

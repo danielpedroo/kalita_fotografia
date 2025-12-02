@@ -1,9 +1,10 @@
-import { Control } from "react-hook-form";
+import { Control, FieldErrors, FieldValues } from "react-hook-form";
+import { formContactType } from "../schema/validation-form-contact";
 
-export interface ICustomPhone {
+export interface ICustomPhone extends FieldValues {
   label?: string;
-  name: string;
-  control: Control<any>;
-  errors?: any;
+  name: keyof formContactType;
+  control: Control<formContactType>;
+  errors?: FieldErrors;
   placeholder?: string;
 }

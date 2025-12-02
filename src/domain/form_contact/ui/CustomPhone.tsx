@@ -26,6 +26,7 @@ export default function CustomPhone({
       <Controller
         name={name}
         control={control}
+        defaultValue=""
         render={({ field: { onChange, onBlur, value, ref } }) => (
           <>
             <IMaskInput
@@ -46,7 +47,7 @@ export default function CustomPhone({
               )}
 
             />
-            <ErrorMessage message={errors?.[name]?.message} />
+            <ErrorMessage message={errors?.[name]?.message as string} />
           </>
         )}
       />

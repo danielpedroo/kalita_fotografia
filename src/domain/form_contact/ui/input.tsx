@@ -4,7 +4,6 @@ import { IInputProps } from "../types/Input";
 import clsx from "clsx";
 import ErrorMessage from "./ErrorMessage";
 
-
 export default function Input({
   name,
   control,
@@ -18,6 +17,7 @@ export default function Input({
     <Controller
       name={name}
       control={control}
+      defaultValue=""
       render={({ field }) => (
         <div className="flex flex-col gap-2 w-full h-24">
           <label htmlFor={nameLabelInput}>
@@ -35,12 +35,12 @@ export default function Input({
             className={clsx(
               "w-full py-4 px-8 bg-kalita-bg-light border-[0.063rem] rounded-[0.25rem] font-nunito text-kalita-bg-light-brown text-[0.875rem] outline-0",
               {
-                "border-kalita-error": errors[name],
-                "border-kalita-bg-light-brown": !errors[name],
+                "border-kalita-error": errors?.[name],
+                "border-kalita-bg-light-brown": !errors?.[name],
               }
             )}
           />
-          <ErrorMessage message={errors?.[name]?.message} />
+          <ErrorMessage message={errors?.[name]?.message as string} />
         </div>
       )}
     />
